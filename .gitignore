@@ -1,0 +1,44 @@
+*.log
+*.pot
+*.py[cod]
+__pycache__/
+db.sqlite3
+local_settings.py
+media/
+staticfiles/
+
+# Django stuff:
+*.log
+*.pot
+*.py[cod]
+__pycache__/
+db.sqlite3
+local_settings.py
+
+# Backup files:
+*.bak
+*.swp
+*~
+
+# Environments
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
