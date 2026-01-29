@@ -6,9 +6,14 @@ from django.views.decorators.http import require_POST
 
 from .models import Post
 from .forms import EmailPostForm, CommentForm
+from taggit.models import Tag
 
-def post_list(request):
+def post_list(request, tag_slug=None):
     posts = Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        post_list = posts.filter(tags__in=[tag])
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page', 1)
     try:
@@ -18,7 +23,7 @@ def post_list(request):
     except EmptyPage:
         # If page_number is out of range get last page of results
         posts = paginator.page(paginator.num_pages)
-    return render(request, "blog/post/list.html", {"posts": posts})
+    return render(request, "blog/post/list.html", {"posts": posts, "tag":tag})
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post,
